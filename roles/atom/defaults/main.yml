@@ -1,0 +1,5 @@
+---
+bin_dir: /usr/local/bin
+atom_upgrade_all: true
+atom_packages:
+  - language-ansible

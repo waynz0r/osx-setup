@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
+	<key>ShownSetupScreen</key>
+	<true/>
+	<key>_modelid</key>
+	<string>MacBookPro9,2</string>
+	<key>installDateV5</key>
+	<string>1464383697</string>
+	<key>license5</key>
+	<string>5984-9464-2995-2557-2793</string>
+</dict>
+</plist>

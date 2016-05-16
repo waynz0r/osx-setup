@@ -1,0 +1,35 @@
+---
+# osx defaults
+- osx_defaults:
+    domain="{{ item.domain }}"
+    key="{{ item.key }}"
+    type="{{ item.type }}"
+    value="{{ item.value }}"
+    state=present
+  with_items: "{{ osx_defaults }}"
+
+# without domain
+- osx_defaults:
+    key="{{ item.key }}"
+    type="{{ item.type }}"
+    value="{{ item.value }}"
+    state=present
+  with_items: "{{ osx_defaults_without_domain }}"
+
+# currentHost
+- osx_defaults:
+    domain="com.apple.ImageCapture"
+    key="disableHotPlug"
+    type="bool"
+    value="true"
+    host="currentHost"
+
+- name: Defaults install script
+  template:
+    src: defaults.j2
+    dest: "~/defaults.sh"
+    mode: 0755
+- name: Run defaults setup script
+  command: "~/defaults.sh"
+- name: Remove defaults setup script"
+  file: path="~/defaults.sh" state=absent

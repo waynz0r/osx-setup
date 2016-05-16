@@ -1,0 +1,235 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: install cli applications
+      homebrew: name={{ item.name }} state={{ item.state|default("latest") }} install_options={{ item.install_options|default() }}
+      with_items: "{{brew_cli_apps}}"
+    - name: install personal cask applications
+      homebrew_cask: name={{item}} state=present
+      with_items: "{{ brew_cask_apps }}"
+  roles:
+    - { role: computername, tags: [ 'computername' ] }
+    - { role: defaults, tags: [ 'defaults' ] }
+    - { role: homebrew, tags: [ 'homebrew' ] }
+    - { role: zprezto, tags: [ 'zprezto' ] }
+    - { role: dotfiles, tags: [ 'dotfiles' ] }
+    - { role: docker, tags: [ 'docker' ] }
+    - { role: php, tags: [ 'php' ] }
+    - { role: iterm2, tags: [ 'iterm2' ] }
+    - { role: atom, tags: [ 'atom' ] }
+    - { role: istat, tags: [ 'istat' ] }
+  vars:
+    - computername: scepter
+    - docker_machine_name: default
+    - zprezto_repo: https://github.com/waynz0r/prezto.git
+    - zprezto_destination: ~/.zprezto
+    - dotfiles_repo: "https://github.com/waynz0r/dotfiles.git"
+    - dotfiles_repo_destination: "~/.dotfiles"
+    - dotfiles_location: "~"
+    - dotfiles_files:
+      - .tmux.conf
+      - .gitignore
+      - .gitconfig
+      - .config/mc/ini
+      - .atom/config.cson
+      - .atom/init.coffee
+      - .atom/keymap.cson
+      - .atom/snippets.cson
+      - .atom/styles.less
+      - .atom/toolbar.cson
+    - brew_cli_apps:
+      - { name: ccrypt }
+      - { name: coreutils }
+      - { name: colordiff }
+      - { name: dark-mode }
+      - { name: diffutils }
+      - { name: dos2unix }
+      - { name: findutils, install_options: "with-default-names" }
+      - { name: fping }
+      - { name: gnu-sed, install_options: "with-default-names" }
+      - { name: gnu-tar, install_options: "with-default-names" }
+      - { name: gnu-which, install_options: "with-default-names" }
+      - { name: go }
+      - { name: grc }
+      - { name: grep, install_options: "with-default-names" }
+      - { name: gzip }
+      - { name: iproute2mac }
+      - { name: jq }
+      - { name: mtr }
+      - { name: nmap }
+      - { name: openssl }
+      - { name: readline }
+      - { name: rsync }
+      - { name: spark }
+      - { name: tmux }
+      - { name: unrar }
+      - { name: watch }
+      - { name: wdiff, install_options: "with-gettext" }
+      - { name: wget }
+      - { name: wget }
+      - { name: youtube-dl }
+      - { name: zsh }
+    - brew_cask_apps:
+      - 1password
+      - flux
+      - font-inconsolata-dz-for-powerline
+      - font-inconsolata-g-for-powerline
+      - google-chrome
+      - java
+      - macfusion
+      - movist
+      - osxfuse
+      - packer
+      - skype
+      - slack
+      - sshfs
+      - vagrant
+      - virtualbox
+      - virtualbox-extension-pack
+      - vlc
+    - atom_packages:
+      - about
+      - advanced-open-file
+      - archive-view
+      - atom-alignment
+      - atom-beautify
+      - atom-dark-syntax
+      - atom-dark-ui
+      - atom-light-syntax
+      - atom-light-ui
+      - autocomplete-atom-api
+      - autocomplete-css
+      - autocomplete-html
+      - autocomplete-html-entities
+      - autocomplete-paths
+      - autocomplete-php
+      - autocomplete-plus
+      - autocomplete-python
+      - autocomplete-snippets
+      - autoflow
+      - autosave
+      - background-tips
+      - base16-eighties-dark
+      - base16-eighties-dark-syntax
+      - base16-eighties-one-dark
+      - base16-tomorrow-dark-theme
+      - base16-tomorrow-light-theme
+      - bookmarks
+      - bracket-close-jump
+      - bracket-matcher
+      - browser-plus
+      - clipboard-plus
+      - color-picker
+      - colorful-json
+      - command-palette
+      - cursor-history
+      - deprecation-cop
+      - dev-live-reload
+      - disable-keybindings
+      - docblockr
+      - emmet
+      - encoding-selector
+      - exception-reporting
+      - file-icons
+      - find-and-replace
+      - flex-tool-bar
+      - fuzzy-finder
+      - git-diff
+      - git-history
+      - git-log
+      - git-plus
+      - go-to-line
+      - grammar-selector
+      - image-view
+      - incompatible-packages
+      - indentation-indicator
+      - keybinding-resolver
+      - language-c
+      - language-clojure
+      - language-coffee-script
+      - language-csharp
+      - language-css
+      - language-gfm
+      - language-git
+      - language-gitignore
+      - language-go
+      - language-htaccess
+      - language-html
+      - language-hyperlink
+      - language-java
+      - language-javascript
+      - language-json
+      - language-less
+      - language-make
+      - language-mustache
+      - language-objective-c
+      - language-perl
+      - language-php
+      - language-property-list
+      - language-python
+      - language-ruby
+      - language-ruby-on-rails
+      - language-sass
+      - language-shellscript
+      - language-source
+      - language-sql
+      - language-text
+      - language-tmux
+      - language-todo
+      - language-toml
+      - language-xml
+      - language-yaml
+      - less-than-slash
+      - line-ending-selector
+      - lines
+      - link
+      - linter
+      - linter-csslint
+      - linter-jshint
+      - linter-jsonlint
+      - linter-php
+      - linter-scss-lint
+      - linter-shellcheck
+      - linter-tidy
+      - markdown-preview
+      - merge-conflicts
+      - metrics
+      - minimap
+      - multi-cursor
+      - navigate
+      - new-tab
+      - notifications
+      - one-dark-syntax
+      - one-dark-ui
+      - one-light-syntax
+      - one-light-ui
+      - open-on-github
+      - open-this
+      - package-generator
+      - php-integrator-autocomplete-plus
+      - php-integrator-base
+      - pigments
+      - script
+      - settings-view
+      - snippets
+      - solarized-dark-syntax
+      - solarized-light-syntax
+      - source-preview
+      - spell-check
+      - status-bar
+      - styleguide
+      - Sublime-Style-Column-Selection
+      - symbols-tree-view
+      - symbols-view
+      - tabs
+      - tabs-to-spaces
+      - terminal-panel
+      - timecop
+      - tool-bar
+      - tree-view
+      - update-package-dependencies
+      - welcome
+      - whitespace
+      - wrap-guide

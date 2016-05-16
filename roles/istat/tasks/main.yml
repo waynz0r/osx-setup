@@ -1,0 +1,11 @@
+---
+- name: install istat menus
+  homebrew_cask: name=istat-menus state=present
+- name: install istat preferences
+  copy: src="{{item}}" dest="~/Library/Preferences/{{item}}"
+  with_items: [ "com.bjango.istatmenus.plist", "com.bjango.istatmenus5.extras.plist" ]
+- name: killall cfprefsd
+  become: true
+  shell: killall cfprefsd
+  register: killall_cfprefsd_result
+  changed_when: "killall_cfprefsd_result.rc != 0"

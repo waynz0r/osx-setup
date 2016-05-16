@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# Installs docker-machine on OS X
+#
+# Setup dev env
+if [[ ! $(docker-machine ls | grep {{ docker_machine_name }}) ]]
+then
+    docker-machine create --driver virtualbox {{ docker_machine_name }}
+fi
+
+# Start docker host if it is not running
+if [[ $(docker-machine ls | grep -i {{ docker_machine_name }} | grep -i stopped) ]]
+then
+    docker-machine start {{ docker_machine_name }}
+fi
+
+# Load in dev env
+eval "$(docker-machine env {{ docker_machine_name }})"

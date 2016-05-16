@@ -1,0 +1,21 @@
+---
+- name: Install prezto from git
+  git:
+    repo: "{{ zprezto_repo }}"
+    dest: "{{ zprezto_destination }}"
+    track_submodules: yes
+    force: yes
+    update: yes
+- name: Change default shell to zsh.
+  become: true
+  user: name=wayne shell=/bin/zsh
+- name: zsh - link in prezto files
+  file: state=link src=~/.zprezto/runcoms/{{ item }} path=~/.{{ item }}
+  with_items:
+    - zlogin
+    - zlogout
+    - zprofile
+    - zshenv
+    - zshrc
+    - zpreztorc
+    - zshdockeraliases

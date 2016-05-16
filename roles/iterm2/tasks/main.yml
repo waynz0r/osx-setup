@@ -1,0 +1,16 @@
+---
+- name: tap homebrew versions
+  homebrew_tap: tap=caskroom/versions state=present
+- name: install iterm2 beta
+  homebrew_cask: name=iterm2-beta state=present
+- name: install homebrew fonts
+  homebrew_tap: tap=caskroom/fonts state=present
+- name: install inconsolata-powerline-dz font
+  homebrew_cask: name="font-inconsolata-dz-for-powerline" state="present"
+- name: install iterm2 preferences
+  copy: src="com.googlecode.iterm2.plist" dest="~/Library/Preferences/com.googlecode.iterm2.plist"
+- name: killall cfprefsd
+  become: yes
+  shell: killall cfprefsd
+  register: killall_cfprefsd_result
+  changed_when: "killall_cfprefsd_result.rc != 0"

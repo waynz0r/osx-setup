@@ -1,0 +1,16 @@
+---
+- name: install docker-machine
+  homebrew: name=docker-machine state=latest
+- name: install docker-compose
+  homebrew: name=docker-compose state=latest
+- name: install virtualbox
+  homebrew_cask: name=virtualbox state=present
+- name: Docker install script
+  template:
+    src: docker-setup.j2
+    dest: "~/docker-setup"
+    mode: 0755
+- name: Run docker setup install script
+  command: "~/docker-setup"
+- name: Remove docker setup install script"
+  file: path="~/docker-setup" state=absent

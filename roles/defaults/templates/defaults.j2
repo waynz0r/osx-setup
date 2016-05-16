@@ -1,0 +1,17 @@
+#!/bin/zsh
+# Set standby delay to 24 hours (default is 1 hour)
+sudo pmset -a standbydelay 86400
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+# Disable hibernation (speeds up entering sleep mode)
+sudo pmset -a hibernatemode 0
+# Disable the sudden motion sensor as it’s not useful for SSDs
+sudo pmset -a sms 0
+# Set the timezone; see `sudo systemsetup -listtimezones` for other values
+sudo systemsetup -settimezone "Europe/Budapest" > /dev/null
+# Show the ~/Library folder
+sudo chflags nohidden ~/Library
+# Show the /Volumes folder
+sudo chflags nohidden /Volumes
+# Disable local Time Machine backups
+sudo hash tmutil &> /dev/null && sudo tmutil disablelocal
