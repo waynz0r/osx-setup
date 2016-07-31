@@ -11,15 +11,15 @@
       with_items: "{{ brew_cask_apps }}"
   roles:
     - { role: computername, tags: [ 'computername' ] }
-    - { role: defaults, tags: [ 'defaults' ] }
-    - { role: homebrew, tags: [ 'homebrew' ] }
-    - { role: zprezto, tags: [ 'zprezto' ] }
-    - { role: dotfiles, tags: [ 'dotfiles' ] }
-    - { role: docker, tags: [ 'docker' ] }
-    - { role: php, tags: [ 'php' ] }
-    - { role: iterm2, tags: [ 'iterm2' ] }
-    - { role: atom, tags: [ 'atom' ] }
-    - { role: istat, tags: [ 'istat' ] }
+    - { role: defaults, tags: [ 'defaults' ], ignore_errors: yes }
+    - { role: homebrew, tags: [ 'homebrew' ], ignore_errors: yes }
+    - { role: zprezto, tags: [ 'zprezto' ], ignore_errors: yes }
+    - { role: dotfiles, tags: [ 'dotfiles' ], ignore_errors: yes }
+    - { role: docker, tags: [ 'docker' ], ignore_errors: yes }
+    - { role: php, tags: [ 'php' ], ignore_errors: yes }
+    - { role: iterm2, tags: [ 'iterm2' ], ignore_errors: yes }
+    - { role: atom, tags: [ 'atom' ], ignore_errors: yes }
+    - { role: istat, tags: [ 'istat' ], ignore_errors: yes }
   vars:
     - computername: scepter
     - docker_machine_name: default
@@ -43,6 +43,8 @@
       - { name: ccrypt }
       - { name: coreutils }
       - { name: colordiff }
+      - { name: consul }
+      - { name: curl }
       - { name: dark-mode }
       - { name: diffutils }
       - { name: dos2unix }
@@ -58,12 +60,27 @@
       - { name: iproute2mac }
       - { name: jq }
       - { name: mtr }
+      - { name: mc }
+      - { name: mcrypt }
+      - { name: mhash }
+      - { name: midnight-commander }
+      - { name: mobile-shell }
+      - { name: mtr }
+      - { name: ncftp }
+      - { name: ngrep }
+      - { name: nmap }
+      - { name: node }
       - { name: nmap }
       - { name: openssl }
+      - { name: php-cs-fixer }
+      - { name: pwgen }
       - { name: readline }
       - { name: rsync }
       - { name: spark }
+      - { name: ssh-copy-id }
       - { name: tmux }
+      - { name: speedtest_cli }
+      - { name: xz }
       - { name: unrar }
       - { name: watch }
       - { name: wdiff, install_options: "with-gettext" }
@@ -73,6 +90,8 @@
       - { name: zsh }
     - brew_cask_apps:
       - 1password
+      - appcleaner
+      - flow
       - flux
       - font-inconsolata-dz-for-powerline
       - font-inconsolata-g-for-powerline
@@ -80,10 +99,12 @@
       - java
       - macfusion
       - movist
+      - mumble
       - osxfuse
       - packer
       - skype
       - slack
+      - soundcloud-downloader
       - sshfs
       - vagrant
       - virtualbox
@@ -129,6 +150,7 @@
       - dev-live-reload
       - disable-keybindings
       - docblockr
+      - docker
       - emmet
       - encoding-selector
       - exception-reporting
@@ -208,8 +230,10 @@
       - open-on-github
       - open-this
       - package-generator
+      - php-cs-fixer
       - php-integrator-autocomplete-plus
       - php-integrator-base
+      - php-twig
       - pigments
       - script
       - settings-view
@@ -221,6 +245,7 @@
       - status-bar
       - styleguide
       - Sublime-Style-Column-Selection
+      - symbol-gen
       - symbols-tree-view
       - symbols-view
       - tabs
