@@ -1,9 +1,9 @@
 ---
 - name: install php
-  homebrew: name=php56 state=latest install_options="--with-mysql --with-apache"
+  homebrew: name=php56 state=latest install_options="--with-mysql --without-apache --with-fpm"
 
 - name: install php modules
-  homebrew: name={{item}} state=latest
+  homebrew: name={{item}} state=latest install_options="--without-apache --with-fpm"
   with_items:
     - php56-apcu
     - php56-http

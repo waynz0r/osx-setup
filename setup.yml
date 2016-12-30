@@ -1,14 +1,18 @@
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   connection: local
 
   tasks:
     - name: install cli applications
       homebrew: name={{ item.name }} state={{ item.state|default("latest") }} install_options={{ item.install_options|default() }}
       with_items: "{{brew_cli_apps}}"
+      tags:
+        - cli
     - name: install personal cask applications
       homebrew_cask: name={{item}} state=present
       with_items: "{{ brew_cask_apps }}"
+      tags:
+        - cask
   roles:
     - { role: computername, tags: [ 'computername' ] }
     - { role: defaults, tags: [ 'defaults' ], ignore_errors: yes }
@@ -43,7 +47,6 @@
       - { name: ccrypt }
       - { name: coreutils }
       - { name: colordiff }
-      - { name: consul }
       - { name: curl }
       - { name: dark-mode }
       - { name: diffutils }
@@ -57,6 +60,7 @@
       - { name: grc }
       - { name: grep, install_options: "with-default-names" }
       - { name: gzip }
+      - { name: ipcalc }
       - { name: iproute2mac }
       - { name: jq }
       - { name: mtr }
@@ -73,6 +77,8 @@
       - { name: nmap }
       - { name: openssl }
       - { name: php-cs-fixer }
+      - { name: phpunit }
+      - { name: packer }
       - { name: pwgen }
       - { name: readline }
       - { name: rsync }
@@ -91,20 +97,23 @@
     - brew_cask_apps:
       - 1password
       - appcleaner
+      - citrix-receiver
+      - coconutbattery
       - flow
       - flux
       - font-inconsolata-dz-for-powerline
       - font-inconsolata-g-for-powerline
       - google-chrome
       - java
-      - macfusion
+      - libreoffice
       - movist
       - mumble
       - osxfuse
-      - packer
       - skype
       - slack
       - soundcloud-downloader
+      - spotify
+      - sublime-text
       - sshfs
       - vagrant
       - virtualbox

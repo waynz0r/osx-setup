@@ -3,21 +3,6 @@ osx_defaults_without_domain:
   # Disable press-and-hold for keys in favor of key repeat.
   - { key: ApplePressAndHoldEnabled, type: boolean, value: false }
 osx_defaults:
-  - domain: com.apple.systemuiserver
-    key: dontAutoLoad
-    type: array
-    value: [
-      "/System/Library/CoreServices/Menu Extras/TimeMachine.menu",
-      "/System/Library/CoreServices/Menu Extras/Volume.menu",
-      "/System/Library/CoreServices/Menu Extras/User.menu",
-      "/System/Library/CoreServices/Menu Extras/Clock.menu",
-      "/System/Library/CoreServices/Menu Extras/AirPort.menu",
-      "/System/Library/CoreServices/Menu Extras/Battery.menu"
-    ]
-  - domain: com.apple.systemuiserver
-    key: menuExtras
-    type: array
-    value: [ ]
   - { domain: 'com.apple.dock', key: 'autohide', type: boolean, value: true }
   # Use AirDrop over every interface. srsly this should be a default.
   - { domain: com.apple.NetworkBrowser, key: BrowseAllInterfaces, type: string, value: 1 }
@@ -73,8 +58,6 @@ osx_defaults:
   - { domain: com.apple.universalaccess, key: HIDScrollZoomModifierMask, type: int, value: 262144 }
   # Follow the keyboard focus while zoomed in
   - { domain: com.apple.universalaccess, key: closeViewZoomFollowsFocus, type: bool, value: true }
-  # Set keyboard languages
-  - { domain: NSGlobalDomain, key: AppleLanguages, type: array, value: [ "en", "hu" ] }
   # Disable auto-correct
   - { domain: NSGlobalDomain, key: NSAutomaticSpellingCorrectionEnabled, type: bool, value: false }
   # Require password immediately after sleep or screen saver begins
@@ -150,10 +133,6 @@ osx_defaults:
   - { domain: com.apple.dock, key: show-process-indicators, type: bool, value: true }
   # Move Dock to the left side of the screen
   - { domain: com.apple.dock, key: orientation, type: string, value: left }
-  # Wipe all (default) app icons from the Dock
-  # This is only really useful when setting up a new Mac, or if you don’t use
-  # the Dock to launch apps.
-  - { domain: com.apple.dock, key: persistent-apps, type: array, value: [] }
   # Show only open applications in the Dock
   - { domain: com.apple.dock, key: static-only, type: bool, value: true }
   # Don’t animate opening applications from the Dock
@@ -222,8 +201,6 @@ osx_defaults:
   - { domain: com.apple.Safari, key: IncludeInternalDebugMenu, type: bool, value: true }
   # Make Safari’s search banners default to Contains instead of Starts With
   - { domain: com.apple.Safari, key: FindOnPageMatchesWordStartsOnly, type: bool, value: false }
-  # Remove useless icons from Safari’s bookmarks bar
-  - { domain: com.apple.Safari, key: ProxiesInBookmarksBar, type: array, value: [] }
   # Enable the Develop menu and the Web Inspector in Safari
   - { domain: com.apple.Safari, key: IncludeDevelopMenu, type: bool, value: true }
   - { domain: com.apple.Safari, key: WebKitDeveloperExtrasEnabledPreferenceKey, type: bool, value: true }
