@@ -3,7 +3,7 @@
   git:
     repo: "{{ zprezto_repo }}"
     dest: "{{ zprezto_destination }}"
-    track_submodules: yes
+    track_submodules: no
     force: yes
     update: yes
 - name: Change default shell to zsh.
